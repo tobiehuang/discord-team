@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord 私域專家 - 打造您的專屬社群空間</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Glassmorphism effects */
+        .glass {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #5865f2 0%, #7289da 100%);
+            color: white;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect x="20" y="20" width="15" height="15" fill="rgba(255,255,255,0.1)"/><circle cx="160" cy="50" r="8" fill="rgba(255,255,255,0.08)"/><polygon points="80,120 95,105 110,120 95,135" fill="rgba(255,255,255,0.06)"/></svg>');
+            background-size: 300px 300px;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-10px, -20px) rotate(3deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .cta-button.glass {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            color: #2c2f36;
+            margin-bottom: 60px;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #5865f2, #7289da);
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(45deg, #5865f2, #7289da);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #5865f2, #7289da);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: #2c2f36;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: #4f545c;
+            line-height: 1.6;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #5865f2 0%, #7289da 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="3" fill="rgba(255,255,255,0.1)"/><rect x="65" y="65" width="6" height="6" fill="rgba(255,255,255,0.08)"/></svg>');
+            background-size: 200px 200px;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        .team .section-title {
+            color: white;
+        }
+
+        .team .section-title::after {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 40px 25px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .team-member.glass {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .member-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            font-weight: bold;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .sharon-avatar {
+            background: linear-gradient(45deg, #a29bfe, #6c5ce7);
+        }
+
+        .tobie-avatar {
+            background: linear-gradient(45deg, #ff6b6b, #e17055);
+        }
+
+        .bean-avatar {
+            background: linear-gradient(45deg, #74b9ff, #0984e3);
+        }
+
+        .member-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .member-role {
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .member-description {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background: #2c2f36;
+            color: white;
+            position: relative;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M10 10h12v12h-12z" fill="rgba(88,101,242,0.1)"/><circle cx="75" cy="25" r="4" fill="rgba(114,137,218,0.08)"/></svg>');
+            background-size: 250px 250px;
+        }
+
+        .features .section-title {
+            color: white;
+        }
+
+        .features .section-title::after {
+            background: linear-gradient(45deg, #7289da, #5865f2);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item.glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(88, 101, 242, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(88, 101, 242, 0.4);
+        }
+
+        .feature-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .feature-item p {
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #23272a 0%, #2c2f36 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .contact p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .contact-btn.glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-btn.primary {
+            background: rgba(88, 101, 242, 0.8);
+            border: 1px solid rgba(88, 101, 242, 0.6);
+        }
+
+        .contact-btn.primary:hover {
+            background: rgba(88, 101, 242, 1);
+        }
+
+        /* Discord icon */
+        .discord-icon {
+            display: inline-block;
+            width: 24px;
+            height: 18px;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36"><path fill="currentColor" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in-up">
+                <h1>
+                    <span class="discord-icon"></span>
+                    Discord 私域專家
+                </h1>
+                <p class="hero-subtitle">為品牌與創作者打造專屬的 Discord 社群空間<br>從規劃到維護，一站式專業服務</p>
+                <a href="#contact" class="cta-button glass">立即諮詢</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">我們的服務</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎯</div>
+                    <h3>前期規劃 & 情境設定</h3>
+                    <p>深度分析您的品牌需求，設計最適合的社群架構與互動情境，確保 Discord 服務器完美符合您的社群營運目標。</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">⚙️</div>
+                    <h3>Discord 建置 & 技術支援</h3>
+                    <p>專業的技術建置服務，包含伺服器設定、權限管理、機器人整合，以及持續的技術維護與故障排除。</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">👥</div>
+                    <h3>社群管理 & 諮詢服務</h3>
+                    <p>提供專業的社群經營策略、包月管理服務，以及長期的營運諮詢，讓您的 Discord 社群持續活躍成長。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="container">
+            <h2 class="section-title">專業團隊</h2>
+            <div class="team-grid">
+                <div class="team-member glass">
+                    <div class="member-avatar sharon-avatar">S</div>
+                    <div class="member-name">Sharon</div>
+                    <div class="member-role">社群總監</div>
+                    <p class="member-description">擁有豐富社群經營與數位行銷經驗，專精於社群活動策劃、用戶互動設計與品牌溝通策略。</p>
+                </div>
+                
+                <div class="team-member glass">
+                    <div class="member-avatar tobie-avatar">T</div>
+                    <div class="member-name">Tobie</div>
+                    <div class="member-role">策劃專家</div>
+                    <p class="member-description">專精於社群架構設計與使用者體驗規劃，為每個品牌量身打造最適合的 Discord 環境與互動機制。</p>
+                </div>
+                
+                <div class="team-member glass">
+                    <div class="member-avatar bean-avatar">豆</div>
+                    <div class="member-name">豆仔</div>
+                    <div class="member-role">技術總監</div>
+                    <p class="member-description">資深 Discord 技術專家，負責伺服器建置、機器人開發、權限設定，以及所有技術層面的支援服務。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">為什麼選擇我們</h2>
+            <div class="features-grid">
+                <div class="feature-item glass">
+                    <div class="feature-icon">🚀</div>
+                    <h3>專業經驗</h3>
+                    <p>豐富的 Discord 社群建置與管理經驗，深度了解各種品牌需求</p>
+                </div>
+                
+                <div class="feature-item glass">
+                    <div class="feature-icon">🔧</div>
+                    <h3>一站式服務</h3>
+                    <p>從前期規劃到後期維護，提供完整的解決方案</p>
+                </div>
+                
+                <div class="feature-item glass">
+                    <div class="feature-icon">💡</div>
+                    <h3>客製化設計</h3>
+                    <p>根據每個客戶的獨特需求，量身打造專屬的社群空間</p>
+                </div>
+                
+                <div class="feature-item glass">
+                    <div class="feature-icon">📈</div>
+                    <h3>持續優化</h3>
+                    <p>定期分析社群數據，持續優化營運策略與用戶體驗</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2>準備打造您的 Discord 私域？</h2>
+                <p>讓我們協助您建立一個活躍、專業的社群空間</p>
+                <div class="contact-buttons">
+                    <a href="#" class="contact-btn primary">
+                        <span class="discord-icon"></span>
+                        立即諮詢
+                    </a>
+                    <a href="#" class="contact-btn glass">了解更多</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .team-member, .feature-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
