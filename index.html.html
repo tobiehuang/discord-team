@@ -476,6 +476,34 @@
             }
         }
 
+        .process-timeline::before {
+    left: 30px;
+}
+
+.step-number {
+    left: 30px;
+    transform: translateX(-50%);
+}
+
+.process-step:nth-child(even) {
+    flex-direction: row;
+}
+
+.process-step:nth-child(even) .step-content {
+    text-align: left;
+    margin-left: 80px;
+    margin-right: 0;
+}
+
+.process-step:nth-child(odd) .step-content {
+    margin-left: 80px;
+    margin-right: 0;
+}
+
+.step-content {
+    width: auto;
+}
+
         @media (max-width: 480px) {
             .features-grid {
                 grid-template-columns: 1fr;
@@ -518,6 +546,293 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
+
+        /* Process Section */
+.process {
+    padding: 100px 0;
+    background: #ffffff;
+}
+
+.process-timeline {
+    max-width: 800px;
+    margin: 60px auto 0;
+    position: relative;
+}
+
+.process-timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #5865f2, #7289da);
+    border-radius: 2px;
+}
+
+.process-step {
+    position: relative;
+    margin-bottom: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.process-step:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.process-step:nth-child(even) .step-content {
+    text-align: right;
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, #5865f2, #7289da);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3);
+}
+
+.step-content {
+    width: 45%;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.process-step:nth-child(odd) .step-content {
+    margin-right: 55%;
+}
+
+.process-step:nth-child(even) .step-content {
+    margin-left: 55%;
+}
+
+.step-content h3 {
+    font-size: 1.4rem;
+    color: #2c2f36;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.step-content .step-duration {
+    color: #5865f2;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.step-content p {
+    color: #4f545c;
+    line-height: 1.6;
+}
+
+/* Pricing Section */
+.pricing {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.pricing-grid {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pricing-card {
+    background: white;
+    padding: 40px 35px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    text-align: center;
+}
+
+.pricing-card.featured {
+    border: 3px solid #5865f2;
+}
+
+.pricing-card.featured::before {
+    content: '推薦方案';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(45deg, #5865f2, #7289da);
+    color: white;
+    padding: 8px 25px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+}
+
+.pricing-card.single-plan {
+    max-width: 500px;
+    margin: 0 auto;
+    transform: none;
+}
+
+.pricing-card.single-plan:hover {
+    transform: translateY(-10px);
+}
+
+.plan-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2c2f36;
+    margin-bottom: 10px;
+}
+
+.plan-price {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #5865f2;
+    margin-bottom: 20px;
+}
+
+.plan-description {
+    color: #4f545c;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.plan-features {
+    list-style: none;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.plan-features li {
+    padding: 10px 0;
+    position: relative;
+    padding-left: 25px;
+    color: #4f545c;
+}
+
+.plan-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #5865f2;
+    font-weight: bold;
+}
+
+.plan-btn {
+    display: inline-block;
+    width: 100%;
+    padding: 15px 30px;
+    background: linear-gradient(45deg, #5865f2, #7289da);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.plan-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(88, 101, 242, 0.3);
+}
+
+.plan-note {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #888;
+    font-style: italic;
+}
+
+/* FAQ Section */
+.faq {
+    padding: 100px 0;
+    background: #2c2f36;
+    color: white;
+}
+
+.faq .section-title {
+    color: white;
+}
+
+.faq .section-title::after {
+    background: linear-gradient(45deg, #7289da, #5865f2);
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 60px auto 0;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.faq-question {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px 25px;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-question:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.faq-question h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.faq-toggle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-toggle {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0 25px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: none;
+}
+
+.faq-item.active .faq-answer {
+    padding: 20px 25px;
+    max-height: 200px;
+}
 </style>
     </style>
 </head>
@@ -566,6 +881,155 @@
     </section>
 
     <!-- Team Section -->
+    <!-- Process Section -->
+    <section class="process" id="process">
+        <div class="container">
+            <h2 class="section-title">合作流程</h2>
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>需求討論 & 初步規劃</h3>
+                        <div class="step-duration">約 1-2 次會議 (1-2 週)</div>
+                        <p>深度了解您的品牌定位、社群目標與使用情境，規劃適合的頻道架構，並提供多種頻道類型選項（文字、語音、舞台、討論區等）供您選擇。</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>體驗設計 & 遊戲化規劃</h3>
+                        <div class="step-duration">約 1 週</div>
+                        <p>根據您的需求加入遊戲化元素與互動機制，設計專屬的使用者體驗流程，讓社群成員更有參與感與黏著度。</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Discord 建置 & 機器人串接</h3>
+                        <div class="step-duration">約 1-2 週</div>
+                        <p>完成 Discord 伺服器建置，包含頻道設定、權限管理、客製化機器人配置，以及必要的 Webhook 串接。</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>測試優化 & 交付教學</h3>
+                        <div class="step-duration">約 3-5 天</div>
+                        <p>進行完整的功能測試與優化，提供詳細的操作教學，確保您能順利接手並開始營運社群。</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>後續維護 & 諮詢支援</h3>
+                        <div class="step-duration">1 個月免費 QA</div>
+                        <p>提供一個月的免費問答支援，協助解決使用上的問題，並提供社群經營建議與技術諮詢。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">服務方案</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card featured single-plan">
+                    <div class="plan-name">Discord 社群建置服務</div>
+                    <div class="plan-price">NT$ 25,000 起</div>
+                    <div class="plan-description">包含完整的社群體驗設計與專業建置服務</div>
+                    <ul class="plan-features">
+                        <li>深度需求分析與策略規劃</li>
+                        <li>客製化頻道架構設計</li>
+                        <li>遊戲化體驗規劃</li>
+                        <li>Discord 伺服器完整建置</li>
+                        <li>進階機器人功能串接</li>
+                        <li>Webhook 整合服務</li>
+                        <li>視覺與互動元素設計</li>
+                        <li>完整操作手冊與教學</li>
+                        <li>1 個月免費 QA + 營運諮詢</li>
+                    </ul>
+                    <a href="https://tally.so/r/mJyQlo" class="plan-btn" target="_blank">立即諮詢</a>
+                    <div class="plan-note">
+                        *實際報價將根據您的具體需求進行評估
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title">常見問題</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>建置完成後，我需要自己管理 Discord 伺服器嗎？</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>是的，我們會提供完整的操作教學和管理手冊，讓您能夠獨立管理 Discord 伺服器。同時，我們提供一個月的免費技術支援，協助您解決初期遇到的問題。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>如果後續需要新增功能或調整，該怎麼辦？</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>我們提供後續的技術支援服務，可以協助您新增功能、調整設定或優化社群體驗。具體費用會依據需求複雜度而定，歡迎隨時與我們討論。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>建置過程中需要我們提供哪些資料？</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>主要需要您提供品牌資訊、目標受眾描述、希望的社群互動方式，以及任何特殊需求。我們會在初次討論時詳細說明所需資料清單。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>完整的建置流程大約需要多長時間？</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>從初次諮詢到完成交付，通常需要 3-5 週的時間。實際時間會依據方案複雜度和您的回饋速度而調整。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>是否提供社群經營策略的建議？</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>是的！我們的團隊不僅提供技術建置，也會根據您的品牌特性和目標受眾，提供專業的 Discord 社群經營策略建議，但目前不提供代操服務。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>可以先看看其他客戶的案例嗎？</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>當然可以！我們很樂意在諮詢過程中分享相關的成功案例（在客戶同意的前提下），幫助您更了解我們的服務品質和成果。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="team" id="team">
         <div class="container">
             <h2 class="section-title">專業團隊</h2>
@@ -657,7 +1121,7 @@
     立即諮詢
 </a>
 
-                    <a href="#" class="contact-btn glass">了解更多</a>
+                    <a href="#pricing" class="contact-btn glass">查看方案</a>
                 </div>
             </div>
         </div>
@@ -699,6 +1163,23 @@
             el.style.transition = 'all 0.6s ease-out';
             observer.observe(el);
         });
+        // FAQ Toggle
+document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+        const faqItem = question.closest('.faq-item');
+        const isActive = faqItem.classList.contains('active');
+        
+        // Close all FAQ items
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        // Open clicked item if it wasn't active
+        if (!isActive) {
+            faqItem.classList.add('active');
+        }
+    });
+});
     </script>
 </body>
 </html>
